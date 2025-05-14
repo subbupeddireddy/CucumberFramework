@@ -7,13 +7,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utils.CommonUtils;
+
 public class FinancialYearBudgetPage {
 
 	WebDriver driver;
+	CommonUtils utils;
 
-	public FinancialYearBudgetPage(WebDriver driver) {
+	public FinancialYearBudgetPage(WebDriver driver) throws Exception {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
+		utils =new CommonUtils(driver);
+		
 	}
 
 	@FindBy(css = "button[title='Add Financial Year Budget']")
@@ -47,9 +52,10 @@ public class FinancialYearBudgetPage {
 	@FindBy (css="a[title='print']") private WebElement printBtn;
 
 	public void addFinancialYearBudget(String budget) throws InterruptedException {
-		Thread.sleep(2000);
+		
 
 		try {
+			utils.waitForVisibleWebElement(financialYearNewBtn);
 			if (financialYearNewBtn.isDisplayed()) {
 
 				System.out.println("Budget already added");
@@ -59,43 +65,108 @@ public class FinancialYearBudgetPage {
 			System.out.println("Not found any New Budget , So i was adding");
 			System.out.println("In block");
 			clickonFinancialYearBudget();
-			Thread.sleep(2000);
-			selectFinYearBtn.click();
-			Thread.sleep(1000);
-			currentFinYearSelection.click();
-			budgetValueTxt.sendKeys(budget);
-			selectdatePickerBtnt.click();
-			Thread.sleep(1000);
-			currentDateSlection.click();
-			remarksTxt.sendKeys("SampleText");
-			uploadFile.sendKeys(
-					"C:\\Users\\qq\\eclipse-workspace\\InTheFormCucum\\src\\test\\resources\\files\\subbu.pdf");
-			allocateBtn.click();
+			clickOnSelectFinYear();
+			selectCurrentFinYear();
+			enterBudget(budget);
+			clickOnDatePicker();
+			selectCurrentDate();
+			enterRemarks("SampleText");
+			uploadFile();
+			clickOnAllocateBtn();
 		}
 
 	}
 	
+public void clickOnSelectFinYear() {
+		
+		utils.waitForClickWebElement(selectFinYearBtn);
+		selectFinYearBtn.click();
+	}
+	
+	public void selectCurrentFinYear() {
+		utils.waitForClickWebElement(currentFinYearSelection);
+		currentFinYearSelection.click();
+	
+	}
+	public void enterBudget(String budget) {
+		utils.waitForVisibleWebElement(budgetValueTxt);
+		budgetValueTxt.sendKeys(budget);
+	}
+public void clickOnDatePicker() {
+		
+		utils.waitForClickWebElement(selectdatePickerBtnt);
+		selectdatePickerBtnt.click();
+	}
+	
+	public void selectCurrentDate() {
+		utils.waitForClickWebElement(currentDateSlection);
+		currentDateSlection.click();
+	
+	}
+	public void uploadFile() {
+		utils.waitForVisibleWebElement(uploadFile);
+
+		uploadFile.sendKeys(
+				System.getProperty("user.dir")+"\\src\\test\\resources\\files\\subbu.pdf");
+	
+	}
+	
+public void clickOnAllocateBtn() {
+		
+		utils.waitForClickWebElement(allocateBtn);
+		allocateBtn.click();
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	public void clickOnPrint() {
-		printBtn.click();
+		
+		utils.waitForClickWebElement(printBtn);
+				printBtn.click();
 	}
 	public void excelDownload() {
+		utils.waitForClickWebElement(excelDownload);
 		excelDownload.click();
 	}
 
 	public void clickonFinancialYearBudget() {
+		utils.waitForClickWebElement(addFinYearBtn);
 		addFinYearBtn.click();
-		System.out.println("Clicked ");
 	}
 
+	
+	
 	public void clickOnNew() {
+		utils.waitForClickWebElement(financialYearNewBtn);
 		financialYearNewBtn.click();
 	}
+	
+	
+	
+	
 
 	public void approveFinYearBudget() {
-		remarksTxt.sendKeys("approved");
-		approveBtn.click();
+		enterRemarks("approved");
+		clickOnApproveButton();
+		
 
+	}
+	
+	public void clickOnApproveButton() {
+		utils.waitForClickWebElement(approveBtn);
+		approveBtn.click();
+	}
+	
+	
+	public void enterRemarks(String remarks) {
+		utils.waitForVisibleWebElement(remarksTxt);
+		remarksTxt.sendKeys(remarks);
+		
 	}
 
 }

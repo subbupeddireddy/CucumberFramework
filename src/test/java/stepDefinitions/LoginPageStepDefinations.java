@@ -18,7 +18,7 @@ public class LoginPageStepDefinations {
 
 	SubbuSharing share;
 
-	public LoginPageStepDefinations(SubbuSharing share) {
+	public LoginPageStepDefinations(SubbuSharing share) throws Exception {
 		this.share = share;
 		lp = share.pages.getLoginPage();
 	}

@@ -5,15 +5,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utils.CommonUtils;
+
 public class LoginPage {
 
 
 	WebDriver driver;
 	
-	
-	public LoginPage(WebDriver driver) {
+	CommonUtils utils;
+	public LoginPage(WebDriver driver) throws Exception {
 		this.driver=driver;
 		PageFactory.initElements(driver,this);
+		utils =new CommonUtils(driver);
 	}
 	
 	
@@ -31,6 +34,8 @@ public class LoginPage {
 		passwordTxt.sendKeys(pass);
 		verifcationTxt.sendKeys("subbu test");
 		signInBtn.click();
+		utils.waitForINVisibleWebElement(signInBtn);
+		
 		
 	}
 	

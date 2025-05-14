@@ -19,7 +19,7 @@ Given the "HEAD" is on Financial Year Budget page
 When the user submits the Financial year budget
 Then the success message is displayed
  
-  @smoke
+  @smokes
 Scenario Outline: Print and download the Financial Year Budget
   Given the "<user>" is on Financial Year Budget page
   When the user clicks on the Financial Year Budget print button
