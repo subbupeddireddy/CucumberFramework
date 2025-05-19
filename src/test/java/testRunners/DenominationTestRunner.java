@@ -11,7 +11,7 @@ import io.cucumber.testng.CucumberOptions;
 		glue={"stepDefinitions","hooks"},
 		monochrome=true,
 		dryRun=false,
-		plugin= {"pretty","html:target/subbu/denomination.report"},
+		plugin= {"pretty","html:target/subbu/denomination.report","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter" },
 		tags="@smokes"
 
 				

@@ -34,7 +34,7 @@ public class Hooks {
 		System.out.println("I was closing the scenarios of Sanity");
 	}
 	
-		//@After
+		@After
 	public void tearDownAfterScenario() {
 	//	sharing.driver.close();
 		sharing.driver.quit();
@@ -55,4 +55,19 @@ public class Hooks {
 		}
 		
 	}
+	
+	
+	@AfterStep	
+		public void attachScreenShot(Scenario scenario) throws Exception, IOException {
+			
+			if(scenario.isFailed()) {
+		TakesScreenshot as=	(TakesScreenshot)sharing.driver;
+		
+		File source=as.getScreenshotAs(OutputType.FILE);
+		byte[] filecontent=FileUtils.readFileToByteArray(source);
+		scenario.attach(filecontent, "image/png", "image");
+		
+			}
+			
+		}
 }

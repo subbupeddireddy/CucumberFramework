@@ -7,7 +7,8 @@ import io.cucumber.testng.CucumberOptions;
 glue= {"stepDefinitions","hooks"},
 monochrome=true,
 dryRun=false,
-plugin= {"pretty","html:target/subbu/subbuAllTestHTML.report"}
+plugin= {"pretty","html:target/subbu/subbuAllTestHTML.report","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+		,"rerun:target/failedTests.txt"}
 		
 		)
 public class RunAllTestsTestRunner extends AbstractTestNGCucumberTests{

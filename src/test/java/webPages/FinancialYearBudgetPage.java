@@ -17,8 +17,8 @@ public class FinancialYearBudgetPage {
 	public FinancialYearBudgetPage(WebDriver driver) throws Exception {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
-		utils =new CommonUtils(driver);
-		
+		utils = new CommonUtils(driver);
+
 	}
 
 	@FindBy(css = "button[title='Add Financial Year Budget']")
@@ -46,13 +46,13 @@ public class FinancialYearBudgetPage {
 	private WebElement financialYearNewBtn;
 	@FindBy(xpath = "//ul[@id='select2-finYr-results']/li[text()='2025-2026']")
 	private WebElement currentFinYearSelection;
-	
-	
-	@FindBy (css="body h3#export") private WebElement excelDownload;
-	@FindBy (css="a[title='print']") private WebElement printBtn;
+
+	@FindBy(css = "body h3#export")
+	private WebElement excelDownload;
+	@FindBy(css = "a[title='print']")
+	private WebElement printBtn;
 
 	public void addFinancialYearBudget(String budget) throws InterruptedException {
-		
 
 		try {
 			utils.waitForVisibleWebElement(financialYearNewBtn);
@@ -76,59 +76,55 @@ public class FinancialYearBudgetPage {
 		}
 
 	}
-	
-public void clickOnSelectFinYear() {
-		
+
+	public void clickOnSelectFinYear() {
+
 		utils.waitForClickWebElement(selectFinYearBtn);
 		selectFinYearBtn.click();
 	}
-	
+
 	public void selectCurrentFinYear() {
 		utils.waitForClickWebElement(currentFinYearSelection);
 		currentFinYearSelection.click();
-	
+
 	}
+
 	public void enterBudget(String budget) {
 		utils.waitForVisibleWebElement(budgetValueTxt);
 		budgetValueTxt.sendKeys(budget);
 	}
-public void clickOnDatePicker() {
-		
+
+	public void clickOnDatePicker() {
+
 		utils.waitForClickWebElement(selectdatePickerBtnt);
 		selectdatePickerBtnt.click();
 	}
-	
+
 	public void selectCurrentDate() {
 		utils.waitForClickWebElement(currentDateSlection);
 		currentDateSlection.click();
-	
+
 	}
+
 	public void uploadFile() {
 		utils.waitForVisibleWebElement(uploadFile);
 
-		uploadFile.sendKeys(
-				System.getProperty("user.dir")+"\\src\\test\\resources\\files\\subbu.pdf");
-	
+		uploadFile.sendKeys(System.getProperty("user.dir") + "\\src\\test\\resources\\files\\subbu.pdf");
+
 	}
-	
-public void clickOnAllocateBtn() {
-		
+
+	public void clickOnAllocateBtn() {
+
 		utils.waitForClickWebElement(allocateBtn);
 		allocateBtn.click();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public void clickOnPrint() {
-		
+
 		utils.waitForClickWebElement(printBtn);
-				printBtn.click();
+		printBtn.click();
 	}
+
 	public void excelDownload() {
 		utils.waitForClickWebElement(excelDownload);
 		excelDownload.click();
@@ -139,34 +135,26 @@ public void clickOnAllocateBtn() {
 		addFinYearBtn.click();
 	}
 
-	
-	
 	public void clickOnNew() {
 		utils.waitForClickWebElement(financialYearNewBtn);
 		financialYearNewBtn.click();
 	}
-	
-	
-	
-	
 
 	public void approveFinYearBudget() {
 		enterRemarks("approved");
 		clickOnApproveButton();
-		
 
 	}
-	
+
 	public void clickOnApproveButton() {
 		utils.waitForClickWebElement(approveBtn);
 		approveBtn.click();
 	}
-	
-	
+
 	public void enterRemarks(String remarks) {
 		utils.waitForVisibleWebElement(remarksTxt);
 		remarksTxt.sendKeys(remarks);
-		
+
 	}
 
 }

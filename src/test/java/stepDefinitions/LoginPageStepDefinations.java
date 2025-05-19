@@ -1,7 +1,6 @@
 package stepDefinitions;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import io.cucumber.java.en.Given;
@@ -12,8 +11,7 @@ import webPages.LoginPage;
 public class LoginPageStepDefinations {
 
 	WebDriver driver;
-	String url = "http://10.10.10.206/BPCL/central/site/login";
-	String  pass = "Admin@123";
+	String pass = "Admin@123";
 	LoginPage lp;
 
 	SubbuSharing share;
@@ -24,22 +22,23 @@ public class LoginPageStepDefinations {
 	}
 
 	@Given("the user is on the Login page")
-	public void user_is_on_the_login_page() {
+	public void user_is_on_the_login_page() throws Exception {
 
-		share.driver.get(url);
+		share.driver.get(share.utils.getProperty("maindevurl"));
 
 	}
 
 	@When("^the (.+) sigin with valid credentials$")
-	public void siginWithValidCredentials(String user) throws InterruptedException {
+	public void siginWithValidCredentials(String user) throws Exception {
 
-		lp.signIn(user, pass);
-		Thread.sleep(2000);
+		lp.signIn(user, share.utils.getProperty("pass"));
+		
 	}
 
 	@Then("the user signin to application")
 	public void verifyUrl() {
-		Assert.assertFalse(share.driver.getCurrentUrl().contains("site/login"));
+		
+			Assert.assertFalse(share.driver.getCurrentUrl().contains("site/login"));
 	}
 
 }
