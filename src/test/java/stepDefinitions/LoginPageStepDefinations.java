@@ -32,13 +32,13 @@ public class LoginPageStepDefinations {
 	public void siginWithValidCredentials(String user) throws Exception {
 
 		lp.signIn(user, share.utils.getProperty("pass"));
-		
+
 	}
 
 	@Then("the user signin to application")
 	public void verifyUrl() {
-		
-			Assert.assertFalse(share.driver.getCurrentUrl().contains("site/login"));
+
+		Assert.assertFalse(share.driver.getCurrentUrl().contains("site/login"));
 	}
 
 }

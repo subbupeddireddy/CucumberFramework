@@ -22,7 +22,7 @@ public class Hooks {
 
 	}
 
-	@After("@smokes")
+	//@After("@smokes")
 	public void tearDownAfterSmokeScenario() {
 		sharing.driver.quit();
 		System.out.println("I was closing the scenarios of Smoke");
@@ -34,7 +34,7 @@ public class Hooks {
 		System.out.println("I was closing the scenarios of Sanity");
 	}
 	
-		@After
+	//	@After
 	public void tearDownAfterScenario() {
 	//	sharing.driver.close();
 		sharing.driver.quit();

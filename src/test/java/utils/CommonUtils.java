@@ -21,7 +21,7 @@ public class CommonUtils {
 
 	public CommonUtils(WebDriver driver) throws Exception {
 		this.driver = driver;
-		wait=new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait=new WebDriverWait(driver, Duration.ofSeconds(9));
 
 	}
 
